@@ -6,7 +6,7 @@ function matchProb = runBirthdaySim(groupSize, numTrials, birthDist)
 % the birthdays over the course of a year.
 
 % Preallocate space for the results.
-blockWidth = 1000;
+blockWidth = 100;
 matches = false(numTrials, blockWidth);
 
 % Run the batch of Monte Carlo trials.
@@ -26,7 +26,7 @@ function match = runTrial(groupSize, blockWidth, birthDist)
 bdays = randsample(365, groupSize*blockWidth, true, birthDist);
 bdays = reshape(bdays, [groupSize, blockWidth]);
 
-% Is there a match?
+% Are there any matches?
 match = any(diff(sort(bdays)) == 0);
 
 end % runTrial
