@@ -6,7 +6,7 @@ function matchProb = runBirthdaySimPar(groupSize, numTrials, birthDist)
 % the birthdays over the course of a year.
 
 % Preallocate space for the results.
-blockWidth = 1000;
+blockWidth = 100;
 matches = false(numTrials, blockWidth);
 
 % Run the batch of Monte Carlo trials.

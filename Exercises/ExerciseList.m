@@ -51,6 +51,46 @@
 %   Ensure that the results are comparable to those obtained running the 
 %   original code.
 
+%% Gene matching.
+%
+% * Use the gunzip command to extract the data file gene.txt contained in 
+%   the archive gene.txt.gz.
+%
+% * Invoke the (sequential) genematch function using the following syntax:
+%   >> [bestPercentMatch, matchStartIndex] = genematch('gattaca', 'gene.txt');
+%
+% * Open the file pargenematch in the MATLAB Editor. The next steps are 
+%   described in the TODO comments contained in this file. Run the function
+%   pargenematch to offload the gene matching computation as a parallel
+%   job.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Call the splitDataset subfunction provided to obtain the start and end values for each task.
+
+Set up each task to call the genematch function with the proper start and end values.
+
+Submit the job and wait for the results.
+
+Obtain the results and return them in the output variable results.
+
+
 
 
 
