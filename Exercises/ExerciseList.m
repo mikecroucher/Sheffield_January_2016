@@ -72,3 +72,51 @@
 % * Modify the code to read the image data in parallel, following the TODO
 %   steps within the function. Test the parallel algorithm using the
 %   "MarsNoisy.tif" image as the input.
+
+%% Exploratory data analysis.
+%
+% * Load quakes14.mat. This file contains a table of earthquake data for 14
+%   countries through the 20th century. The data includes the date and time
+%   of the quake, its magnitude, location, and impact (in terms of life and
+%   cost).
+% * Make a histogram of earthquake magnitudes. Calculate the skewness and 
+%   kurtosis, and compare them to the skewness and kurtosis of a normal 
+%   distribution (0 and 3, respectively).
+% * Repeat step 2 with just Japanese earthquakes.
+% * Use grpstats to calculate the mean magnitude for each country.
+% * Sort the countries by mean magnitude. Hint: Use the categories function
+%   to get the country names.
+% * Make a boxplot of magnitudes grouped by country. Does this agree with 
+%   your findings above?
+% * Make a scatter plot of the logarithm of the number of deaths and the 
+%   logarithm of the damage cost. (These variables have a highly 
+%   exponential distribution; taking the logarithm makes visualization of 
+%   their relationship clearer.) Calculate the correlation coefficient.
+
+%% Probability distributions.
+%
+% * Load quakes14.mat. This file contains a table of earthquake data for 14
+%   countries through the 20th century. The data includes the date and time
+%   of the quake, its magnitude, location, and impact (in terms of life and
+%   cost).
+% * Make a histogram of earthquake magnitudes. It can be difficult to 
+%   determine if data is normally distributed from a histogram alone.  
+%   Make a normal probability plot and use an appropriate test to determine
+%   whether magnitudes are normally distributed.
+% * Repeat step 2 with just Japanese earthquakes, and again with just 
+%   Turkish earthquakes.
+% * Fit normal distributions to the Japanese and Turkish earthquake 
+%   magnitudes.
+% * Compare the two distributions by plotting their pdfs on the same set 
+%   of axes.
+
+%% Curve-fitting and regression.
+% * Load WCgoals.mat. This file contains a record of the number of goals 
+%   and number of matches played in each FIFA World Cup™.
+% * Make a plot of the average number of goals per match, as a function of 
+%   year.
+% * Calculate two best-fit trendlines: one for the entire data set, and the
+%   other for just the World Cups from 1962 onward. Overlay both lines on 
+%   the plot.
+% * Make normal probability plots of the residuals from both fits. Are the
+%   residuals normally distributed?
