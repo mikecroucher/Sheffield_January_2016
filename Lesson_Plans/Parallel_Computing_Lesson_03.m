@@ -106,20 +106,3 @@ reset(ds);
 ds.SelectedVariableNames = {'Windspeed'};
 T = readall(ds);
 medWS = median(T.Windspeed);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

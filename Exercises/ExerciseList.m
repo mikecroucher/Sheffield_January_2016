@@ -64,3 +64,11 @@
 %   pargenematch to offload the gene matching computation as a parallel
 %   job.
 
+%% Parallel image filtering.
+%
+% * Open the file parallelImageReadStart.m in the MATLAB Editor and examine
+%   its contents. The code reads in a noisy image and applies the median 
+%   filtering algorithm to remove the noise.
+% * Modify the code to read the image data in parallel, following the TODO
+%   steps within the function. Test the parallel algorithm using the
+%   "MarsNoisy.tif" image as the input.
