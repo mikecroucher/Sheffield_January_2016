@@ -63,7 +63,7 @@ w = ones(nPts, 1)/nPts;
 longTrend = conv(deseasPrice, w, 'same');
 hold on
 plot(dates, longTrend, 'r', 'LineWidth', 1.5)
-legend('Deseasonalised Prices', 'Long-Term Trend')
+legend('Deseasonalised Prices', 'Long-Term Trend', 'Location', 'northwest')
 
 %% Subtract it.
 m = (nPts-1)/2;
@@ -119,17 +119,52 @@ grid
 Y = fft(usageDetrend);
 nSamples = numel(Y);
 fs = 1; % One sample per month.
-freq = (0:n-1)*(fs/n); % Frequency vector.
+freq = (0:nSamples-1)*(fs/nSamples); % Frequency vector.
 P = Y .* conj(Y) / nSamples; % Power vector.
 m = floor(nSamples/2); % Half-way point.
+P = P(1:m);
+freq = freq(1:m);
+figure
+plot(freq, P)
+xlabel('Frequency (samples/month)')
+ylabel('Power')
+title('Power vs. Frequency')
 
+%% Identify peaks in the spectrum.
+[pks, locs] = findpeaks(P, 'NPeaks', 3, 'SortStr', 'descend');
+hold on
+plot(freq(locs), pks, 'r*')
+% Which periodicities do these frequencies correspond to?
+per = 1./freq(locs);
+% 6 months, 12 months, 4 months.
 
+%% Can we simplify some parts of this workflow?
+[P, f] = periodogram(usage, [], numel(usage), fs, 'power');
+figure
+plot(f, db(P))
+xlabel('Frequency')
+ylabel('Power')
+title('Spectrum created using periodogram')
+grid
 
+%% Construct a model for the data based on this frequency analysis.
+t = days(dates - dates(1));
+nDays = range(t);
+nYrs = nDays/365.254;
+t = (t - min(t))/nDays;
+% usage ~ C0 + C1*t + C2*cos(4*pi*t*nYrs) + C3*cos(2*pi*t*nYrs) +
+% C4*cos(6*pi*t*nYrs)
+% This includes the linear trend and the three frequency terms.
+X = [t, cos(4*pi*t*nYrs), cos(2*pi*t*nYrs)];%, cos(6*pi*t*nYrs)];
+usageModel = fitlm(X, usage);
+% (A constant term is included by default.)
 
-
-
-
-
-%% Windowing.
-
-%% Zero padding.
+figure
+plot(dates, usage)
+hold on
+plot(dates, usageModel.Fitted, 'r', 'LineWidth', 1.5)
+xlabel('Date')
+ylabel('Usage')
+title('Electricity Usage')
+legend('Usage Data', 'Linear Model', 'Location', 'northwest')
+grid

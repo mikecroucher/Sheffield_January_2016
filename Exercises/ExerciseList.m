@@ -120,3 +120,32 @@
 %   the plot.
 % * Make normal probability plots of the residuals from both fits. Are the
 %   residuals normally distributed?
+
+%% Signal processing and FFTs.
+% Exponential moving averages are commonly used in applications. 
+% These moving averages assign more weight to recent observations, and less
+% weight to historically older observations. In this exercise, you will 
+% compute the exponential moving average for a time series using different
+% techniques. An exponential moving average is computed as follows:
+% y_1 = x_1, y_n = ?*x_n + (1-?)*y_{n-1},
+% where ? is an application-specific scalar parameter chosen in the 
+% range [0, 1]. 
+%
+% * Load the data from the file electricity.mat. Plot the series price 
+%   against dates.
+% * Create scalar variables n = 13 and alpha = 2/(n+1).
+% * Use the NaN function to preallocate a variable y_expma with the same 
+%   size as price. Use a for-loop to implement the exponential moving 
+%   average as defined above. Add y_expma to your plot from step 1.
+% * Rearrange the equation above into standard form, and create vector 
+%   variables a and b representing the filter coefficients. 
+%   Does this filter have a finite or infinite impulse response? 
+%   Hint: >> doc filter. Standard filter form is:
+%   a_1*y_n + a_2*y_{n-1} + a_3*y_{n-2} + ... = 
+%   b_1*x_n + b_2*x_{n-1} + b_3*x_{n-2} + ...
+% * Use the filter function and step 4 to apply an exponential moving 
+%   average to the retailPrice series. Add the result to your plot.
+% * Repeat step 5 using the filtfilt function. 
+% * Use impz to plot the impulse response of this filter, taking 50 
+%   samples. Does this agree with your conclusion from step 4? 
+%   (Note: filtfilt and impz require Signal Processing Toolbox.)
