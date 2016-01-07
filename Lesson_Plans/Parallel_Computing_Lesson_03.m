@@ -1,9 +1,7 @@
 %% Working with Datastores.
 
 %% Create a list of files to use with the datastore.
-fileList = ['C:\Users\kdeeley\Desktop\MathWorks\Training\2016 Q1\', ...
-    '01_MLPC_MLML_January_12th_13th_University_of_Sheffield\', ...
-    'Course_Files_Jan_2016\Data\hurricaneData\*.txt'];
+fileList = ['..' filesep 'Data' filesep 'hurricaneData' filesep '*.txt'];
 
 %% Create the datastore.
 ds = datastore(fileList);
@@ -64,7 +62,7 @@ parfor k = 1:N
     end % while
 end % parfor
 meanWS2 = sum(intermSums) / sum(intermCounts);
-        
+
 %% Exercise.
 % Compute the overall sum of the squared windspeed values using batch
 % processing. Hence evaluate the mean squared windspeed and the standard
